@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python for Kids - Learn Coding Fun!</title>
+    <meta name="description" content="Learn Python programming for kids ages 8-14 with fun, interactive lessons. Build games, solve puzzles, and create amazing projects!">
+    <meta name="keywords" content="Python for kids, coding for children, programming lessons, learn to code, kids programming">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .top-register-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .top-register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            color: #4a90e2;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .python-logo {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section h2 {
+            color: #e74c3c;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .fun-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .fact-card {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .fact-card:hover {
+            transform: scale(1.05);
+        }
+
+        .fact-card h3 {
+            color: #2d3436;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .code-example {
+            background: #2d3748;
+            color: #68d391;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 5px solid #4299e1;
+        }
+
+        .interactive-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: 20px;
+        }
+
+        .try-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .try-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .output {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+            font-family: 'Courier New', monospace;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+
+        .learning-path {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 10px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 3px solid #4a90e2;
+        }
+
+        .step-number {
+            background: #4a90e2;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .python-logo {
+                font-size: 3em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <a href="https://abc.com" target="_blank" class="top-register-btn">
+            🚀 Register Now
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="python-logo">🐍</div>
+            <h1>Python for Kids</h1>
+            <p style="font-size: 1.3em; color: #666; margin-top: 10px;">Learn to code with the friendliest snake in the world!</p>
+        </div>
+
+        <div class="section">
+            <h2>🎯 What is Python?</h2>
+            <p style="font-size: 1.2em; line-height: 1.6; text-align: center;">
+                Python is a super friendly programming language that's perfect for beginners! 
+                It's named after a funny TV show called "Monty Python's Flying Circus" - not the snake! 
+                <span class="emoji">😄</span>
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>🌟 Why Kids Love Python</h2>
+            <div class="fun-facts">
+                <div class="fact-card">
+                    <h3>Easy to Read</h3>
+                    <p>Python looks almost like English! No weird symbols everywhere.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Make Games</h3>
+                    <p>Create awesome games, animations, and interactive stories!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Be Creative</h3>
+                    <p>Draw pictures, make music, and build cool projects!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Problem Solver</h3>
+                    <p>Learn to think like a detective and solve puzzles!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🚀 Your First Python Code</h2>
+            <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">
+                Let's start with something fun! Here's how to make Python say hello:
+            </p>
+            <div class="code-example">
+print("Hello, Young Coder!")
+print("Welcome to the amazing world of Python!")
+print("You're going to create awesome things! 🌟")
+            </div>
+        </div>
+
+        <div class="section interactive-section">
+            <h2>🎮 Try It Yourself!</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Click the buttons below to see Python in action!
+            </p>
+            
+            <button class="try-button" onclick="showGreeting()">Say Hello!</button>
+            <button class="try-button" onclick="showMath()">Do Math Magic!</button>
+            <button class="try-button" onclick="showJoke()">Tell a Joke!</button>
+            
+            <div class="output" id="output">
+                Click a button above to see Python magic! ✨
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>👩‍🏫 Meet Your Amazing Instructor!</h2>
+            <div style="display: flex; align-items: center; gap: 30px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <div style="width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); border: 4px solid #4a90e2;">
+                        <img src="nitya-photo.jpg" alt="Nitya - Python Instructor" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3 style="text-align: center; color: #4a90e2; font-size: 1.8em; margin-bottom: 10px;">Nitya</h3>
+                    <p style="text-align: center; color: #666; font-size: 1.1em; font-style: italic;">Your Child's Creative Coding Guide</p>
+                </div>
+                <div style="flex: 2; min-width: 400px;">
+                    <p style="font-size: 1.2em; line-height: 1.6; margin-bottom: 20px;">
+                        Hi there! I'm Nitya, and I'm super excited to be your coding adventure guide! 🌟 
+                        For over three years, I've been helping amazing kids like you (ages 8-14) discover the magical world of Python programming.
+                    </p>
+                    <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                        I believe coding isn't just about typing commands on a computer - it's like having a superpower! 
+                        It helps you be creative, solve cool puzzles, and build confidence in yourself. 
+                        With my computer science background and love for teaching, I've helped dozens of young coders turn their wildest ideas into real projects!
+                    </p>
+                    <div style="background: linear-gradient(135deg, #a8edea, #fed6e3); padding: 20px; border-radius: 15px; margin: 20px 0;">
+                        <h4 style="color: #2d3436; margin-bottom: 15px; font-size: 1.2em;">🎯 What Makes My Teaching Special:</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="padding: 8px 0; font-size: 1.1em;">🎮 <strong>Hands-on Projects:</strong> Build games, animations, and cool apps!</li>
+                            <li style="padding: 8px 0; font-size: 1.1em;">🧩 <strong>Problem-Solving Fun:</strong> Learn to think like a detective!</li>
+                            <li style="padding: 8px 0; font-size: 1.1em;">🎨 <strong>Creative Expression:</strong> Turn your imagination into code!</li>
+                            <li style="padding: 8px 0; font-size: 1.1em;">👥 <strong>Small Groups:</strong> Personal attention for every student!</li>
+                        </ul>
+                    </div>
+                    <p style="font-size: 1.1em; line-height: 1.6; color: #555;">
+                        Whether you're building your very first game or exploring how computers "think," 
+                        I'm here to guide you step-by-step. My goal is to make sure you not only learn Python 
+                        but also have an absolute blast doing it! 🚀
+                    </p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; padding: 25px; background: rgba(255, 255, 255, 0.8); border-radius: 15px; border: 2px solid #4a90e2;">
+                <h4 style="color: #4a90e2; font-size: 1.3em; margin-bottom: 15px;">Ready to Start Your Coding Journey?</h4>
+                <p style="font-size: 1.1em; color: #666; margin-bottom: 20px;">
+                    I can't wait to welcome you to our coding family and show you just how exciting Python can be! 
+                    Join me for small group sessions or one-on-one lessons designed just for you.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 10px; border-left: 4px solid #ffc107;">
+                        <strong>👥 Small Groups:</strong> Learn with friends!
+                    </div>
+                    <div style="background: #d4edda; padding: 15px; border-radius: 10px; border-left: 4px solid #28a745;">
+                        <strong>👤 One-on-One:</strong> Personalized attention!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Learning Path</h2>
+            <div class="learning-path">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Print Messages</h3>
+                    <p>Learn to make Python talk to you with print statements!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Variables</h3>
+                    <p>Store information like your name, age, and favorite color!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Make Decisions</h3>
+                    <p>Teach Python to make choices with if statements!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Loops</h3>
+                    <p>Make Python repeat actions - like a helpful robot!</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Functions</h3>
+                    <p>Create your own commands and become a code wizard!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎨 Fun Project Ideas</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 5px solid #ffc107;">
+                    <h3>🎲 Number Guessing Game</h3>
+                    <p>Create a game where Python picks a secret number and you have to guess it!</p>
+                </div>
+                <div style="background: #d1ecf1; padding: 20px; border-radius: 10px; border-left: 5px solid #17a2b8;">
+                    <h3>🌈 Color Pattern Maker</h3>
+                    <p>Use Python to draw colorful patterns and shapes on the screen!</p>
+                </div>
+                <div style="background: #d4edda; padding: 20px; border-radius: 10px; border-left: 5px solid #28a745;">
+                    <h3>🤖 Chatbot Friend</h3>
+                    <p>Build a friendly chatbot that can answer questions and tell jokes!</p>
+                </div>
+                <div style="background: #f8d7da; padding: 20px; border-radius: 10px; border-left: 5px solid #dc3545;">
+                    <h3>📊 Grade Calculator</h3>
+                    <p>Make a program that calculates your test scores and gives you encouragement!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h2>🎉 Ready to Start Your Python Adventure?</h2>
+            <p style="font-size: 1.2em; margin: 20px 0;">
+                Remember: Every expert was once a beginner! 
+                Don't worry about making mistakes - that's how we learn! 🌟
+            </p>
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 30px;">
+                Ask your parents or teacher to help you install Python on your computer, 
+                or try online Python playgrounds like Replit or Trinket!
+            </p>
+            <a href="https://abc.com" target="_blank" style="text-decoration: none;">
+                <button class="try-button" style="font-size: 1.3em; padding: 20px 40px; background: linear-gradient(135deg, #e74c3c, #c0392b); margin-top: 20px;">
+                    🚀 Register Now - Start Learning!
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showGreeting() {
+            const output = document.getElementById('output');
+            const greetings = [
+                "Hello there, future programmer! 👋",
+                "Hi! Ready to code something amazing? 🚀",
+                "Greetings, young coder! Let's build cool stuff! 🌟",
+                "Hello! Python is excited to meet you! 🐍"
+            ];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            output.innerHTML = randomGreeting;
+            output.style.background = '#d4edda';
+            output.style.color = '#155724';
+        }
+
+        function showMath() {
+            const output = document.getElementById('output');
+            const num1 = Math.floor(Math.random() * 20) + 1;
+            const num2 = Math.floor(Math.random() * 20) + 1;
+            const result = num1 + num2;
+            output.innerHTML = `🧮 ${num1} + ${num2} = ${result}<br>Python is great at math!`;
+            output.style.background = '#d1ecf1';
+            output.style.color = '#0c5460';
+        }
+
+        function showJoke() {
+            const output = document.getElementById('output');
+            const jokes = [
+                "Why do programmers prefer dark mode? 🌙<br>Because light attracts bugs! 🐛",
+                "What do you call a snake that works for the government? 🐍<br>A civil serpent! 😄",
+                "Why don't programmers like nature? 🌿<br>It has too many bugs! 🐞",
+                "What's a programmer's favorite snack? 🍪<br>Cookies! (The computer kind!) 💻"
+            ];
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            output.innerHTML = randomJoke;
+            output.style.background = '#fff3cd';
+            output.style.color = '#856404';
+        }
+
+        // Add some sparkle effect
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.width = '10px';
+            sparkle.style.height = '10px';
+            sparkle.style.background = '#ffd700';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.animation = 'sparkle 1s ease-in-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        }
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { opacity: 0; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create sparkles occasionally
+        setInterval(createSparkle, 3000);
+    </script>
+</body>
+</html>
